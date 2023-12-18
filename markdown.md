@@ -1,0 +1,12 @@
+- app/
+  - static/
+    - css/
+      - styles.css
+  - templates/
+    - index.html
+    - libro.html
+    - categoria.html
+    - usuario.html
+  - app.py
+- requirements.txt
+- db.sql
