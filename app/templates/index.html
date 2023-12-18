@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Biblioteca</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Libros</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Categoría</th>
+                    <th>Fecha de Publicación</th>
+                    <th>Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros.items %}
+                    <tr>
+                        <td>{{ libro.id }}</td>
+                        <td>{{ libro.nombre }}</td>
+                        <td>{{ libro.autor }}</td>
+                        <td>{{ libro.categoria.nombre }}</td>
+                        <td>{{ libro.fecha_publicacion }}</td>
+                        <td>{{ libro.usuario.nombre if libro.usuario else '-' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ libros.prev() }}
+            {{ libros.next() }}
+        </div>
+    </div>
+</body>
+</html>
