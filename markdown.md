@@ -3,10 +3,16 @@
     - css/
       - styles.css
   - templates/
+    - create_categoria.html
+    - create_libro.html
+    - create_usuario.html
+    - edit_categoria.html
+    - edit_libro.html
+    - edit_usuario.html
     - index.html
-    - libro.html
-    - categoria.html
-    - usuario.html
   - app.py
+- instance/
+  - biblioteca.sql
+- markdown.md
 - requirements.txt
-- db.sql
+- biblioteca.sql

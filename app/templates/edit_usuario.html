@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería - Editar Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Editar Usuario</h1>
+        <form method="POST" action="{{ url_for('edit_usuario', id=usuario.id) }}" class="mt-4">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                {{ form.nombre(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="correo_electronico">Correo Electrónico:</label>
+                {{ form.correo_electronico(class="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+</body>
+</html>

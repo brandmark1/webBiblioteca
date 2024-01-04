@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería - Crear Libro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Crear Libro</h1>
+        <form method="POST" action="{{ url_for('create_libro') }}" class="mt-4">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                {{ form.nombre(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                {{ form.autor(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="categoria_id">Categoría ID:</label>
+                {{ form.categoria_id(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label for="fecha_publicacion">Fecha de Publicación (YYYY-MM-DD):</label>
+                {{ form.fecha_publicacion(class="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>
