@@ -8,16 +8,17 @@ import mysql.connector
 from mysql.connector import Error
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:' '@localhost/biblioteca'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@127.0.0.1/biblioteca'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Funciones de conexión y consulta
 def conectar_base_datos():
     try:
         db_config = {
-            'host': 'localhost',
+            'host': '127.0.0.1',
             'user': 'root',
-            'password': ' ',
+            'password': '',
             'database': 'biblioteca',
         }
         connection = mysql.connector.connect(**db_config)
@@ -68,7 +69,7 @@ def obtener_usuarios(connection):
         return None
     finally:
         cursor.close()
-
+        
 
 # Definir modelos
 class Categoria(db.Model):
@@ -141,6 +142,7 @@ def index():
     pagination = Pagination(page=page, per_page=per_page, total=libros.total, record_name='libros')
     return render_template('index.html', libros=libros, pagination=pagination)
 
+#codigo para crear la lista libro, categorias y usuarios
 @app.route('/libro/create', methods=['GET', 'POST'])
 def create_libro():
     form = LibroForm()
@@ -182,6 +184,8 @@ def create_usuario():
         return redirect(url_for('index'))
     return render_template('create_usuario.html', form=form)
 
+#Este apartado es para edictar la lista de libro, categoria y usuarios
+
 @app.route('/libro/edit/<int:id>', methods=['GET', 'POST'])
 def edit_libro(id):
     libro = Libro.query.get(id)
@@ -217,6 +221,8 @@ def edit_usuario(id):
         return redirect(url_for('index'))
     return render_template('edit_usuario.html', form=form, usuario=usuario)
 
+#Este apartado es para eliminar lista la lista de libro, categoria y usuarios
+
 @app.route('/libro/delete/<int:id>')
 def delete_libro(id):
     libro = Libro.query.get(id)
@@ -239,6 +245,7 @@ def delete_usuario(id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
