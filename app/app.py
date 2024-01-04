@@ -6,11 +6,13 @@ from wtforms.validators import DataRequired, Email
 from flask_paginate import Pagination
 import mysql.connector
 from mysql.connector import Error
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@127.0.0.1/biblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Funciones de conexión y consulta
 def conectar_base_datos():

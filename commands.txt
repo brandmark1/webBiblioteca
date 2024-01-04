@@ -1,0 +1,5 @@
+pip install -r requirements.txt
+
+version de python = 3.11.0
+
+https://www.python.org/downloads/release/python-3110/
